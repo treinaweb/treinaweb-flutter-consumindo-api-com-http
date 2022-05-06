@@ -1,5 +1,4 @@
-import 'package:cadastro/cadastro/controller.dart';
-import 'package:cadastro/home/home.dart';
+import 'package:cadastro/app/modules/cadastro/controller.dart';
 import 'package:cadastro/userMode.dart';
 import 'package:flutter/material.dart';
 
@@ -62,13 +61,7 @@ class CadastroView extends StatelessWidget {
               ),
               OutlinedButton(
                 onPressed: () {
-                  if (user?.id == null) {
-                    controller.addUser(context: context);
-                  }
-
-                  if (user?.id != null) {
-                    controller.editUser(userId: user!.id!, context: context);
-                  }
+                  controller.saveUser(user?.id, context: context);
                 },
                 child: Visibility(
                   visible: user == null,
