@@ -43,4 +43,21 @@ class ApiService {
 
     return [];
   }
+
+  Future<User> getFind(String path, {required String id}) async {
+    final url = Uri.http(_baseUrl, "/api/$path", {"id": id});
+    final response = await http.get(
+      url,
+      headers: header,
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      final user = User.fromJson(data);
+
+      return user;
+    }
+
+    return User(nome: "", idade: 0);
+  }
 }

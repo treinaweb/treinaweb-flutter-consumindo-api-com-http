@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 class CardName extends StatelessWidget {
   final String name;
   final int idade;
-  const CardName({Key? key, required this.name, required this.idade})
-      : super(key: key);
+  final String userId;
+  const CardName({
+    Key? key,
+    required this.name,
+    required this.idade,
+    required this.userId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,7 @@ class CardName extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed(
                   "/cadastro",
-                  arguments: User(nome: name, idade: idade),
+                  arguments: User(nome: name, idade: idade, id: userId),
                 );
               },
               icon: const Icon(Icons.edit),

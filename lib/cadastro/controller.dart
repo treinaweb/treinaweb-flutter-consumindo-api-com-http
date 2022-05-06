@@ -16,4 +16,16 @@ class CadastroController {
       Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
     }
   }
+
+  Future<User> getUser(String? userId) async {
+    if (userId != null) {
+      final user = await _apiService.getFind("user", id: userId);
+
+      nameController.text = user.nome;
+      idadeController.text = user.idade.toString();
+      return user;
+    } else {
+      return User(nome: "", idade: 0);
+    }
+  }
 }

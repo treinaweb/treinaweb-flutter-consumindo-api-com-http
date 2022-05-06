@@ -13,6 +13,24 @@ class CadastroView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro'),
+        actions: [
+          FutureBuilder(
+            future: controller.getUser(user?.id),
+            builder: (ctx, snapshot) {
+              if (snapshot.hasData) {
+                if (user?.id != null) {
+                  return const Icon(Icons.edit);
+                } else {
+                  return const Icon(Icons.person);
+                }
+              } else if (snapshot.hasError) {
+                return const Icon(Icons.error);
+              } else {
+                return const Text('Carregando...');
+              }
+            },
+          ),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(
