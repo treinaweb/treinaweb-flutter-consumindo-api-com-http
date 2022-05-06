@@ -28,4 +28,17 @@ class CadastroController {
       return User(nome: "", idade: 0);
     }
   }
+
+  Future<void> editUser(
+      {required String userId, required BuildContext context}) async {
+    final isTrue = await _apiService.put(
+      "user",
+      data: {"name": nameController.text, "idade": idadeController.text},
+      parameter: {"id": userId},
+    );
+
+    if (isTrue) {
+      Navigator.of(context).pushNamedAndRemoveUntil("/home", (route) => false);
+    }
+  }
 }
