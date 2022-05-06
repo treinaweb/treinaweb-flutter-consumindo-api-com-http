@@ -80,4 +80,13 @@ class ApiService {
       return false;
     }
   }
+
+  Future<void> delete(String path, {Map<String, Object?>? parameter}) async {
+    final url = Uri.http(_baseUrl, "/api/$path", parameter);
+
+    await http.delete(
+      url,
+      headers: header,
+    );
+  }
 }

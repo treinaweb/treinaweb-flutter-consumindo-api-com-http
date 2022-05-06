@@ -7,4 +7,8 @@ class HomeController {
   Future<List<User>> getAllUser() async {
     return await _apiService.getAll("user");
   }
+
+  Future<void> deleteUser(String userId) async {
+    await _apiService.delete("user", parameter: {"id": userId});
+  }
 }
